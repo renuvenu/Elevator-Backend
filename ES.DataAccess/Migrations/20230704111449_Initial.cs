@@ -6,11 +6,23 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ES.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class PersonDetailsAdded : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Floors",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FloorNum = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Floors", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "PersonDetailsInLifts",
                 columns: table => new
@@ -31,6 +43,9 @@ namespace ES.DataAccess.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Floors");
+
             migrationBuilder.DropTable(
                 name: "PersonDetailsInLifts");
         }

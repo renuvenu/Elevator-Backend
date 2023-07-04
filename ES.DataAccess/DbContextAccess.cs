@@ -8,6 +8,7 @@ namespace ES.DataAccess
         public DbContextAccess(DbContextOptions dbContextOptions) : base(dbContextOptions) { }
         
         public DbSet<PersonDetailsInLift> PersonDetailsInLifts { get; set; }
+        public DbSet<Floor> Floors { get; set; }
 
 
     }

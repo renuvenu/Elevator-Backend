@@ -4,6 +4,7 @@ using ES.Model;
 using ES.Model.Request;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Common;
 
 namespace Elevator.WebApi.Controllers
 {
@@ -21,6 +22,14 @@ namespace Elevator.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPersonDetailsInLift() {
             return Ok(await dbContextAccess.PersonDetailsInLifts.ToListAsync());
+        }
+
+        [HttpGet]
+        [Route("/verifyCapacity")]
+        public async Task<IActionResult> VerifyLiftAvailability()
+        {
+            ElevatorCalculation elevatorCalculation = new ElevatorCalculation(dbContextAccess);
+            return Ok(elevatorCalculation.VerifyLiftCapacity());
         }
 
         [HttpPost]

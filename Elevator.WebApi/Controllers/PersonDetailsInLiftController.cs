@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ES.DataAccess;
 using ES.Model;
+using ES.Model.Request;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,7 +24,7 @@ namespace Elevator.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> InsertPersonDetails(AddPersonDetails addPersonDetails)
+        public async Task<IActionResult> InsertPersonDetails(PersonDetailsRequest addPersonDetails)
         {
             if(addPersonDetails != null) {
                 PersonDetailsInLift personDetailsInLift = new PersonDetailsInLift();
@@ -44,7 +45,7 @@ namespace Elevator.WebApi.Controllers
 
         [HttpPut]
         [Route("{id:guid}")]
-        public async Task<IActionResult> UpdatePersonDetails([FromRoute] Guid id,AddPersonDetails addPersonDetails)
+        public async Task<IActionResult> UpdatePersonDetails([FromRoute] Guid id,PersonDetailsRequest addPersonDetails)
         {
             if(addPersonDetails != null)
             {

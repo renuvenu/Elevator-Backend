@@ -37,12 +37,14 @@ namespace Elevator.WebApi.Controllers
         {
             if(addPersonDetails != null) {
                 PersonDetailsInLift personDetailsInLift = new PersonDetailsInLift();
+                ElevatorCalculation elevatorCalculation = new ElevatorCalculation();
                 personDetailsInLift.Id = new Guid();
                 //personDetailsInLift = Mapper.Map<PersonDetailsInLift>(addPersonDetails);
                 personDetailsInLift.PersonId = addPersonDetails.PersonId;
                 personDetailsInLift.Weight = addPersonDetails.Weight;
                 personDetailsInLift.FromFloorNum = addPersonDetails.FromFloorNum;
                 personDetailsInLift.ToFloorNum = addPersonDetails.ToFloorNum;
+                personDetailsInLift.TravelledDateTime = elevatorCalculation.GetCurrentDateTime();
                 personDetailsInLift.Status = addPersonDetails.Status;
 
                 await dbContextAccess.PersonDetailsInLifts.AddAsync(personDetailsInLift);

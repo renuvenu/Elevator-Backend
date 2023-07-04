@@ -10,6 +10,7 @@ namespace ES.DataAccess
         public DbSet<PersonDetailsInLift> PersonDetailsInLifts { get; set; }
         public DbSet<Floor> Floors { get; set; }
 
+        public DbSet<Person> Persons { get; set; }
 
     }
 }

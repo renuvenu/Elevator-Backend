@@ -6,7 +6,10 @@ namespace Common
     {
         private readonly DbContextAccess dbContextAccess;
 
+        public ElevatorCalculation()
+        {
 
+        }
         public ElevatorCalculation(DbContextAccess dbContextAccess)
         {
             this.dbContextAccess = dbContextAccess;
@@ -33,6 +36,13 @@ namespace Common
                 }
             }
             return false;
+        }
+
+        public string GetCurrentDateTime()
+        {
+            DateTime dateTime = DateTime.Now;
+            string format = "yyyy-MM-dd HH:mm:ss";
+            return dateTime.ToString( format );
         }
     }
 }

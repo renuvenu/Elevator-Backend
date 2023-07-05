@@ -24,10 +24,9 @@ namespace Elevator.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> InsertFunctionDetails(FunctionDetailsRequest addFunctionDetails)
+        public async Task<IActionResult> InsertFunctionDetails()
         {
-            if (addFunctionDetails != null)
-            {
+            
                 LiftFunctionDetails liftFunctionDetails = new LiftFunctionDetails();
                 liftFunctionDetails.Id = new Guid();
                 liftFunctionDetails.CurrentPostion = 0;
@@ -40,8 +39,7 @@ namespace Elevator.WebApi.Controllers
                 await dbContextAccess.LiftFunctionDetail.AddAsync(liftFunctionDetails);
                 await dbContextAccess.SaveChangesAsync();
                 return Ok(liftFunctionDetails);
-            }
-            else { return BadRequest("Invalid details"); }
+            
         }
 
 

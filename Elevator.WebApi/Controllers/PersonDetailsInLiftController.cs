@@ -124,5 +124,19 @@ namespace Elevator.WebApi.Controllers
             }
             return Ok(personDetail);
         }
+
+        [HttpGet("user/{userId}")]
+        public async Task<IActionResult> GetPersonDetailsByUserId(string userId)
+        {
+            var personDetails = await dbContextAccess.PersonDetailsInLifts
+                .Where(p => p.PersonId == userId)
+                .ToListAsync();
+
+            return Ok(personDetails);
+        }
+
+
+
+
     }
 }

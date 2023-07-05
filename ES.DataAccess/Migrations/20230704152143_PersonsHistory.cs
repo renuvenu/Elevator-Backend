@@ -5,7 +5,7 @@
 namespace ES.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class Employeev3 : Migration
+    public partial class PersonsHistory : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

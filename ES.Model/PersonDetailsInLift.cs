@@ -13,7 +13,7 @@ namespace ES.Model
         public Guid Id { get; set; }
 
         [Required]
-        public string PersonId { get; set; }
+        public string? PersonId { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(18,2)")]
@@ -26,6 +26,10 @@ namespace ES.Model
         public int ToFloorNum { get; set;}
 
         [Required]
-        public string Status { get; set;}
+        public String? TravelledDateTime { get; set; }
+
+        [Required]
+        public string? Status { get; set;}
+
     }
 }

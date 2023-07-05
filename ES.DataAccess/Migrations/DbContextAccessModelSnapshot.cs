@@ -4,7 +4,6 @@ using ES.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,11 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ES.DataAccess.Migrations
 {
     [DbContext(typeof(DbContextAccess))]
-    [Migration("20230703161335_PersonDetailsAddednew3")]
-    partial class PersonDetailsAddednew3
+    partial class DbContextAccessModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,24 +22,47 @@ namespace ES.DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ES.Model.Employee", b =>
+            modelBuilder.Entity("ES.Model.Floor", b =>
                 {
-                    b.Property<Guid>("EmployeeId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("FirstName")
+                    b.Property<int>("FloorNum")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Floors");
+                });
+
+            modelBuilder.Entity("ES.Model.Person", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ContactNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("OfficeName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("Id");
 
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EmployeeId");
-
-                    b.ToTable("Employees");
+                    b.ToTable("Persons");
                 });
 
             modelBuilder.Entity("ES.Model.PersonDetailsInLift", b =>
@@ -64,6 +84,10 @@ namespace ES.DataAccess.Migrations
 
                     b.Property<int>("ToFloorNum")
                         .HasColumnType("int");
+
+                    b.Property<string>("TravelledDateTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Weight")
                         .HasColumnType("decimal(18,2)");

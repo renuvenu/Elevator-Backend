@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\ES.DataAccess\ES.DataAccess.csproj" />
     <ProjectReference Include="..\ES.Model\ES.Model.csproj" />
   </ItemGroup>

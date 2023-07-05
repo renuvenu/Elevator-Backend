@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ES.DataAccess.Migrations
 {
     [DbContext(typeof(DbContextAccess))]
-    [Migration("20230703154412_PersonDetailsAdded")]
-    partial class PersonDetailsAdded
+    [Migration("20230704144033_Persons")]
+    partial class Persons
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,24 +25,47 @@ namespace ES.DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ES.Model.Employee", b =>
+            modelBuilder.Entity("ES.Model.Floor", b =>
                 {
-                    b.Property<Guid>("EmployeeId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("FirstName")
+                    b.Property<int>("FloorNum")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Floors");
+                });
+
+            modelBuilder.Entity("ES.Model.Person", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ContactNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("OfficeName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("Id");
 
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EmployeeId");
-
-                    b.ToTable("Employees");
+                    b.ToTable("Persons");
                 });
 
             modelBuilder.Entity("ES.Model.PersonDetailsInLift", b =>

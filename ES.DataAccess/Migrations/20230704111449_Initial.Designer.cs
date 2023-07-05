@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ES.DataAccess.Migrations
 {
     [DbContext(typeof(DbContextAccess))]
-    [Migration("20230703160524_PersonDetailsAddednew1")]
-    partial class PersonDetailsAddednew1
+    [Migration("20230704111449_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,24 +25,43 @@ namespace ES.DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ES.Model.Employee", b =>
+<<<<<<< HEAD:ES.DataAccess/Migrations/EmployeeDbContextModelSnapshot.cs
+            modelBuilder.Entity("ES.Model.LiftFunctionDetails", b =>
+=======
+            modelBuilder.Entity("ES.Model.Floor", b =>
+>>>>>>> 33c0ca1307921d3a314abf3b8db162b7b4e707ce:ES.DataAccess/Migrations/20230704111449_Initial.Designer.cs
                 {
-                    b.Property<Guid>("EmployeeId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+<<<<<<< HEAD:ES.DataAccess/Migrations/EmployeeDbContextModelSnapshot.cs
+                    b.Property<int>("CurrentPostion")
+                        .HasColumnType("int");
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("EmergencyAlarm")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("Fan")
+                        .HasColumnType("bit");
 
-                    b.HasKey("EmployeeId");
+                    b.Property<bool>("FireAlarm")
+                        .HasColumnType("bit");
 
-                    b.ToTable("Employees");
+                    b.Property<bool>("PowerStatus")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LiftFunctionDetail");
+=======
+                    b.Property<int>("FloorNum")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Floors");
+>>>>>>> 33c0ca1307921d3a314abf3b8db162b7b4e707ce:ES.DataAccess/Migrations/20230704111449_Initial.Designer.cs
                 });
 
             modelBuilder.Entity("ES.Model.PersonDetailsInLift", b =>

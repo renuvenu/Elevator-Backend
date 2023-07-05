@@ -4,6 +4,7 @@ using ES.Model;
 using ES.Model.Request;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Common;
 
 namespace Elevator.WebApi.Controllers
 {
@@ -23,17 +24,27 @@ namespace Elevator.WebApi.Controllers
             return Ok(await dbContextAccess.PersonDetailsInLifts.ToListAsync());
         }
 
+        [HttpGet]
+        [Route("/verifyCapacity")]
+        public async Task<IActionResult> VerifyLiftAvailability()
+        {
+            ElevatorCalculation elevatorCalculation = new ElevatorCalculation(dbContextAccess);
+            return Ok(elevatorCalculation.VerifyLiftCapacity());
+        }
+
         [HttpPost]
         public async Task<IActionResult> InsertPersonDetails(PersonDetailsRequest addPersonDetails)
         {
             if(addPersonDetails != null) {
                 PersonDetailsInLift personDetailsInLift = new PersonDetailsInLift();
+                ElevatorCalculation elevatorCalculation = new ElevatorCalculation();
                 personDetailsInLift.Id = new Guid();
                 //personDetailsInLift = Mapper.Map<PersonDetailsInLift>(addPersonDetails);
                 personDetailsInLift.PersonId = addPersonDetails.PersonId;
                 personDetailsInLift.Weight = addPersonDetails.Weight;
                 personDetailsInLift.FromFloorNum = addPersonDetails.FromFloorNum;
                 personDetailsInLift.ToFloorNum = addPersonDetails.ToFloorNum;
+                personDetailsInLift.TravelledDateTime = elevatorCalculation.GetCurrentDateTime();
                 personDetailsInLift.Status = addPersonDetails.Status;
 
                 await dbContextAccess.PersonDetailsInLifts.AddAsync(personDetailsInLift);

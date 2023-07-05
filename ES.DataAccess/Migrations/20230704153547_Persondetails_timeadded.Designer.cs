@@ -4,6 +4,7 @@ using ES.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ES.DataAccess.Migrations
 {
     [DbContext(typeof(DbContextAccess))]
-    partial class EmployeeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230704153547_Persondetails_timeadded")]
+    partial class Persondetails_timeadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,30 +25,47 @@ namespace ES.DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ES.Model.LiftFunctionDetails", b =>
+            modelBuilder.Entity("ES.Model.Floor", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("CurrentPostion")
+                    b.Property<int>("FloorNum")
                         .HasColumnType("int");
-
-                    b.Property<bool>("EmergencyAlarm")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Fan")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("FireAlarm")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("PowerStatus")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
-                    b.ToTable("LiftFunctionDetail");
+                    b.ToTable("Floors");
+                });
+
+            modelBuilder.Entity("ES.Model.Person", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ContactNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("OfficeName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Persons");
                 });
 
             modelBuilder.Entity("ES.Model.PersonDetailsInLift", b =>
@@ -67,6 +87,10 @@ namespace ES.DataAccess.Migrations
 
                     b.Property<int>("ToFloorNum")
                         .HasColumnType("int");
+
+                    b.Property<string>("TravelledDateTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Weight")
                         .HasColumnType("decimal(18,2)");

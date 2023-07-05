@@ -12,11 +12,10 @@ namespace ES.Model
         [Required]
         public Guid Id { get; set; }
         [Required]
-        public int CurrentPostion { get; set; }
+        public int CurrentPostion { get; set; } 
         [Required]
-        public bool EmergencyAlarm { get; set; }
-        [Required]
-        public bool Fan { get; set; }
+        public bool EmergencyAlarm { get; set; } 
+        public bool Fan { get; set; } 
         [Required]
         public bool FireAlarm{get;set;}
         [Required]

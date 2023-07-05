@@ -36,6 +36,32 @@ namespace ES.DataAccess.Migrations
                     b.ToTable("Floors");
                 });
 
+            modelBuilder.Entity("ES.Model.LiftFunctionDetails", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("CurrentPostion")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("EmergencyAlarm")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Fan")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("FireAlarm")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("PowerStatus")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LiftFunctionDetail");
+                });
+
             modelBuilder.Entity("ES.Model.Person", b =>
                 {
                     b.Property<Guid>("Id")

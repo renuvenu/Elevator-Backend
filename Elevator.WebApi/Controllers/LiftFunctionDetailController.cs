@@ -30,11 +30,11 @@ namespace Elevator.WebApi.Controllers
             {
                 LiftFunctionDetails liftFunctionDetails = new LiftFunctionDetails();
                 liftFunctionDetails.Id = new Guid();
-                liftFunctionDetails.CurrentPostion = addFunctionDetails.CurrentPosition;
-                liftFunctionDetails.EmergencyAlarm = addFunctionDetails.EmergencyAlarm;
-                liftFunctionDetails.Fan = addFunctionDetails.Fan;
-                liftFunctionDetails.FireAlarm = addFunctionDetails.FireAlarm;
-                liftFunctionDetails.PowerStatus = addFunctionDetails.PowerStatus;
+                liftFunctionDetails.CurrentPostion = 0;
+                liftFunctionDetails.EmergencyAlarm = false;
+                liftFunctionDetails.Fan = false;
+                liftFunctionDetails.FireAlarm = false;
+                liftFunctionDetails.PowerStatus = false;
 
 
                 await dbContextAccess.LiftFunctionDetail.AddAsync(liftFunctionDetails);
@@ -126,6 +126,18 @@ namespace Elevator.WebApi.Controllers
                 await dbContextAccess.SaveChangesAsync();
             }
 
+            return Ok(functionDetail);
+        }
+        [HttpDelete]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> DeleteFunctiondetails([FromRoute] Guid id)
+        {
+            var functionDetail = dbContextAccess.LiftFunctionDetail.FirstOrDefault(x => x.Id == id);
+            if (functionDetail != null)
+            {
+                dbContextAccess.LiftFunctionDetail.Remove(functionDetail);
+                await dbContextAccess.SaveChangesAsync();
+            }
             return Ok(functionDetail);
         }
     }

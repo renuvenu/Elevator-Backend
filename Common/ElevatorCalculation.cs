@@ -22,20 +22,20 @@ namespace Common
             if (PersonDetails.Length > 0 )
             {
                 weight = PersonDetails.Sum(x => x.Weight);
-                //foreach ( var person in PersonDetails )
-                //{
-                //    if ( person != null && person.Status == "Inprogress")
-                //    {
-                //        weight += person.Weight;
-                //    }
-                //}
 
                 if( weight < 600 )
                 {
                     return true;
                 }
+                else
+                {
+                    return false;
+                }
             }
-            return false;
+            else
+            {
+                return true;
+            }
         }
 
         public string GetCurrentDateTime()

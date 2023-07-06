@@ -84,10 +84,10 @@ namespace Elevator.WebApi.Controllers
 
 
         [HttpPut]
-        [Route("{id:guid}/{status}")]
-        public async Task<IActionResult> UpdateStatus([FromRoute] Guid id, [FromRoute] string status)
+        [Route("{id}/{status}")]
+        public async Task<IActionResult> UpdateStatus([FromRoute] string id, [FromRoute] string status)
         {
-                var personDetail = await dbContextAccess.PersonDetailsInLifts.FirstOrDefaultAsync(x => x.Id == id);
+                var personDetail = await dbContextAccess.PersonDetailsInLifts.FirstOrDefaultAsync(x => x.PersonId == id);
 
                 if (personDetail != null)
                 {

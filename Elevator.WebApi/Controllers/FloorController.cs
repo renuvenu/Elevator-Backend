@@ -10,7 +10,6 @@ namespace Elevator.WebApi.Controllers
     public class FloorController: Controller
     {
         private readonly DbContextAccess dbContextAccess;
-        static int FloorNumber = 1;
 
         public FloorController(DbContextAccess dbContextAccess)
         {
@@ -23,14 +22,15 @@ namespace Elevator.WebApi.Controllers
         {
             if(count > 0)
             {
+                dbContextAccess.Floors.RemoveRange(dbContextAccess.Floors.ToList());
+                await dbContextAccess.SaveChangesAsync();
                 for (int i = 0; i < count; i++)
                 {
                     Floor floor = new Floor();
                     floor.Id = new Guid();
-                    floor.FloorNum = FloorNumber;
+                    floor.FloorNum = i+1;
                     await dbContextAccess.Floors.AddAsync(floor);
                     await dbContextAccess.SaveChangesAsync();
-                    FloorNumber++;
                 }
                 return Ok(true);
             }

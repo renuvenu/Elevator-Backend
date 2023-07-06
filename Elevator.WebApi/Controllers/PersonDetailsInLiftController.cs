@@ -125,6 +125,15 @@ namespace Elevator.WebApi.Controllers
             return Ok(personDetail);
         }
 
+        //[HttpGet("user/{userId}")]
+        //public async Task<IActionResult> GetPersonDetailsByUserId(string userId)
+        //{
+        //    var personDetails = await dbContextAccess.PersonDetailsInLifts
+        //        .Where(p => p.PersonId == userId)
+        //        .ToListAsync();
+
+        //    return Ok(personDetails);
+        //}
         [HttpGet("user/{userId}")]
         public async Task<IActionResult> GetPersonDetailsByUserId(string userId)
         {
@@ -132,7 +141,23 @@ namespace Elevator.WebApi.Controllers
                 .Where(p => p.PersonId == userId)
                 .ToListAsync();
 
-            return Ok(personDetails);
+            var userDetails = await dbContextAccess.Persons
+                .Where(p => p.UserId == userId)
+                .Select(p => new { p.Name })
+                .FirstOrDefaultAsync();
+
+            if (userDetails == null)
+            {
+                return NotFound(); // User not found
+            }
+
+            var result = new
+            {
+                PersonDetails = personDetails,
+                UserName = userDetails.Name
+            };
+
+            return Ok(result);
         }
 
 

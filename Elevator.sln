@@ -5,8 +5,6 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elevator.WebApi", "Elevator.WebApi\Elevator.WebApi.csproj", "{2E7EA264-C7A2-4251-907F-526739CB26E6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Elevator.UI", "Elevator.UI\Elevator.UI.csproj", "{A0348F0C-977F-46A4-BA6E-5648CD1713AF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ES.Model", "ES.Model\ES.Model.csproj", "{E695C467-EB0E-41C3-8D02-21BAA8C8AA4B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ES.BussinessRules", "ES.BussinessRules\ES.BussinessRules.csproj", "{138F1345-87D1-43A0-9B66-4A80EBD0A68E}"
@@ -25,10 +23,6 @@ Global
 		{2E7EA264-C7A2-4251-907F-526739CB26E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E7EA264-C7A2-4251-907F-526739CB26E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E7EA264-C7A2-4251-907F-526739CB26E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0348F0C-977F-46A4-BA6E-5648CD1713AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0348F0C-977F-46A4-BA6E-5648CD1713AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0348F0C-977F-46A4-BA6E-5648CD1713AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0348F0C-977F-46A4-BA6E-5648CD1713AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E695C467-EB0E-41C3-8D02-21BAA8C8AA4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E695C467-EB0E-41C3-8D02-21BAA8C8AA4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E695C467-EB0E-41C3-8D02-21BAA8C8AA4B}.Release|Any CPU.ActiveCfg = Release|Any CPU

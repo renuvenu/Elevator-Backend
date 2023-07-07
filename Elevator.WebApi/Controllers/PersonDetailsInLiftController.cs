@@ -100,17 +100,7 @@ namespace Elevator.WebApi.Controllers
                 return Ok(personDetail);
         }
 
-        //public async Task<IActionResult> UpdateStatus([FromRoute] Guid id,string status)
-        //{
-        //    var personDetail = await dbContextAccess.PersonDetailsInLifts.FirstOrDefaultAsync(x => x.Id == id);
-        //    if(personDetail != null)
-        //    {
-        //        personDetail.Status = status;
-        //        dbContextAccess.PersonDetailsInLifts.Update(personDetail);
-        //        await dbContextAccess.SaveChangesAsync();
-        //    }
-        //    return Ok(personDetail);
-        //}
+    
 
         [HttpDelete]
         [Route("{id:guid}")]
@@ -124,16 +114,6 @@ namespace Elevator.WebApi.Controllers
             }
             return Ok(personDetail);
         }
-
-        //[HttpGet("user/{userId}")]
-        //public async Task<IActionResult> GetPersonDetailsByUserId(string userId)
-        //{
-        //    var personDetails = await dbContextAccess.PersonDetailsInLifts
-        //        .Where(p => p.PersonId == userId)
-        //        .ToListAsync();
-
-        //    return Ok(personDetails);
-        //}
         [HttpGet("user/{userId}")]
         public async Task<IActionResult> GetPersonDetailsByUserId(string userId)
         {
@@ -143,18 +123,19 @@ namespace Elevator.WebApi.Controllers
 
             var userDetails = await dbContextAccess.Persons
                 .Where(p => p.UserId == userId)
-                .Select(p => new { p.Name })
+                .Select(p => new { p.Name ,p.OfficeName})
                 .FirstOrDefaultAsync();
 
             if (userDetails == null)
             {
-                return NotFound(); // User not found
+                return NotFound(); 
             }
 
             var result = new
             {
                 PersonDetails = personDetails,
-                UserName = userDetails.Name
+                UserName = userDetails.Name,
+                OfficeName = userDetails.OfficeName
             };
 
             return Ok(result);
